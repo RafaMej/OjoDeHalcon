@@ -4,6 +4,7 @@
 //
 //  Created by Rafael Mejía López on 13/10/25.
 //
+import SwiftUI
 
 struct MainTabView: View {
     @State private var selectedTab = 2

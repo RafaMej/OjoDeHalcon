@@ -4,6 +4,7 @@
 //
 //  Created by Rafael Mejía López on 13/10/25.
 //
+import SwiftUI
 
 class AppState: ObservableObject {
     @Published var isOnboardingCompleted: Bool = UserDefaults.standard.bool(forKey: "onboardingCompleted")
