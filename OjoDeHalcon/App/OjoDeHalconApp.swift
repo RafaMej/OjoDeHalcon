@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//import Firebase
+import Firebase
 
 @main
 struct OjoDeHalconApp: App {
@@ -24,9 +24,20 @@ struct OjoDeHalconApp: App {
         }
     }
     
-    private func configureAppearance() {
-        UINavigationBar.appearance().largeTitleTextAttributes = [.foregroundColor: UIColor(AppTheme.whiteSharp)]
-        UINavigationBar.appearance().titleTextAttributes = [.foregroundColor: UIColor(AppTheme.whiteSharp)]
+    func configureAppearance() {
+   
+        let appearance = UINavigationBarAppearance()
+        
+      
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = UIColor(AppTheme.tacticalBlack)
+        
+       
+        appearance.largeTitleTextAttributes = [.foregroundColor: UIColor(AppTheme.whiteSharp)]
+        appearance.titleTextAttributes = [.foregroundColor: UIColor(AppTheme.whiteSharp)]
+   
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().compactAppearance = appearance
     }
 }
-

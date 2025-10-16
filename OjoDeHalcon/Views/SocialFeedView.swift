@@ -4,6 +4,7 @@
 //
 //  Created by Rafael Mejía López on 13/10/25.
 //
+
 import SwiftUI
 
 struct SocialFeedView: View {
@@ -24,7 +25,7 @@ struct SocialFeedView: View {
                                 action: { selectedFilter = index }
                             )
                         }
-                        Spacer()
+                        .padding()
                     }
                     .padding()
                     
@@ -92,3 +93,8 @@ struct EmptyStateView: View {
         .padding()
     }
 }
+
+#Preview {
+    SocialFeedView()
+}
+

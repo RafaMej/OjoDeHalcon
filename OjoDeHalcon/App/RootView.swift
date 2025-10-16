@@ -1,20 +1,17 @@
-//
-//  RootView.swift
-//  OjoDeHalcon
-//
-//  Created by Rafael Mejía López on 13/10/25.
-//
+// En: OjoDeHalcon/App/RootView.swift
+
 import SwiftUI
 
 struct RootView: View {
     @EnvironmentObject var appState: AppState
     
     var body: some View {
-        Group {
+        SwiftUI.Group {
             if !appState.isOnboardingCompleted {
                 OnboardingView()
             } else if !appState.hasRequiredPermissions {
-                PermissionsView()
+             
+                RealPermissionsView()
             } else if !appState.isAuthenticated {
                 AuthenticationView()
             } else {
@@ -22,4 +19,9 @@ struct RootView: View {
             }
         }
     }
+}
+
+#Preview {
+    RootView()
+        .environmentObject(AppState()) 
 }

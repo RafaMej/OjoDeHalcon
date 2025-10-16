@@ -26,14 +26,14 @@ struct AuthenticationView: View {
                         .font(.system(size: 28, weight: .medium))
                         .foregroundColor(AppTheme.whiteSharp)
                     
-                    Text("MundialAI")
+                    Text("MundialIA")
                         .font(.system(size: 48, weight: .bold))
-                        .foregroundColor(AppTheme.championBurgundy)
+                        .foregroundColor(AppTheme.gloryGold)
                 }
                 
                 Text("Inicia sesión para personalizar tu experiencia")
                     .font(.system(size: 16))
-                    .foregroundColor(AppTheme.gloryGold)
+                    .foregroundColor(AppTheme.whiteSharp.opacity(0.8))
                     .multilineTextAlignment(.center)
                 
                 Spacer()
@@ -64,12 +64,10 @@ struct AuthenticationView: View {
     }
     
     func signInWithApple() {
-        // Implement Sign in with Apple
         appState.isAuthenticated = true
     }
     
     func signInWithEmail() {
-        // Implement Email sign in
         appState.isAuthenticated = true
     }
 }
@@ -94,4 +92,8 @@ struct AuthButton: View {
             .cornerRadius(12)
         }
     }
+}
+
+#Preview {
+    AuthenticationView()
 }

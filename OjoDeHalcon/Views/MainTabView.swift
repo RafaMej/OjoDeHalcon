@@ -1,9 +1,5 @@
-//
-//  MainTabView.swift
-//  OjoDeHalcon
-//
-//  Created by Rafael Mejía López on 13/10/25.
-//
+// OjoDeHalcon/Views/MainTabView.swift
+
 import SwiftUI
 
 struct MainTabView: View {
@@ -11,7 +7,7 @@ struct MainTabView: View {
     
     var body: some View {
         ZStack {
-            AppTheme.tacticalBlack.ignoresSafeArea()
+            AppTheme.gloryGold.ignoresSafeArea()
             
             TabView(selection: $selectedTab) {
                 SocialFeedView()
@@ -26,10 +22,12 @@ struct MainTabView: View {
                     }
                     .tag(1)
                 
-                AIAnalysisView()
+                AnalystView()
                     .tabItem {
+                        
                         Label("Análisis IA", systemImage: "camera.fill")
                     }
+    
                     .tag(2)
                 
                 StatsView()
@@ -38,13 +36,17 @@ struct MainTabView: View {
                     }
                     .tag(3)
                 
-                TranslationView()
+                TranscriptionView()
                     .tabItem {
                         Label("Traducción", systemImage: "globe")
                     }
                     .tag(4)
             }
-            .accentColor(AppTheme.gloryGold)
+            .accentColor(AppTheme.gloryGold) 
         }
     }
+}
+
+#Preview {
+    MainTabView()
 }

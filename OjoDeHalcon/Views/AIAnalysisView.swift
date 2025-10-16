@@ -19,7 +19,7 @@ struct AIAnalysisView: View {
                         Spacer()
                         
                         ZStack {
-                            Circle()
+                            RoundedRectangle(cornerRadius: CGFloat(20), style: .continuous)
                                 .fill(AppTheme.championBurgundy.opacity(0.3))
                                 .frame(width: 200, height: 200)
                             
@@ -30,7 +30,7 @@ struct AIAnalysisView: View {
                                 .foregroundColor(AppTheme.whiteSharp)
                         }
                         
-                        VStack(spacing: 16) {
+                        VStack(spacing: 6) {
                             Text("Análisis IA en Vivo")
                                 .font(.title)
                                 .fontWeight(.bold)
@@ -43,8 +43,7 @@ struct AIAnalysisView: View {
                                 .padding(.horizontal, 32)
                         }
                         
-                        Spacer()
-                        
+                        .padding(.bottom, 90)
                         Button(action: { isAnalyzing = true }) {
                             HStack {
                                 Image(systemName: "play.fill")
@@ -57,8 +56,9 @@ struct AIAnalysisView: View {
                             .background(AppTheme.gloryGold)
                             .cornerRadius(12)
                         }
-                        .padding(.horizontal, 32)
-                        .padding(.bottom, 32)
+                        .buttonStyle(PrimaryButtonStyle())
+                        .padding(.horizontal, 60)
+                        .padding(.bottom, 90)
                     }
                 } else {
                     LiveAnalysisView(isAnalyzing: $isAnalyzing)
@@ -108,7 +108,6 @@ struct LiveAnalysisView: View {
                 }
                 .padding()
                 
-                // Score Display
                 HStack {
                     VStack {
                         Text("Argentina")
@@ -184,4 +183,8 @@ struct LiveAnalysisView: View {
             }
         }
     }
+}
+
+#Preview {
+    AIAnalysisView()
 }

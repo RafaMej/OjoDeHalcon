@@ -17,12 +17,13 @@ struct LoadingView: View {
                 Image(systemName: "sportscourt.fill")
                     .resizable()
                     .scaledToFit()
-                    .frame(width: 80, height: 80)
+                    .frame(width: 100, height: 100)
                     .foregroundColor(AppTheme.gloryGold)
                     .rotationEffect(.degrees(isAnimating ? 360 : 0))
-                    .animation(.linear(duration: 2).repeatForever(autoreverses: false), value: isAnimating)
+                    .animation(.linear(duration: 5).repeatForever(autoreverses: false), value: isAnimating)
                 
                 Text("Cargando...")
+                    .font(.caption)
                     .foregroundColor(AppTheme.whiteSharp)
             }
         }
@@ -30,4 +31,8 @@ struct LoadingView: View {
             isAnimating = true
         }
     }
+}
+
+#Preview {
+    LoadingView()
 }
