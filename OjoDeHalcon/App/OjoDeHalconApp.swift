@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//import Firebase
+import Firebase
 
 @main
 struct OjoDeHalconApp: App {

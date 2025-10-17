@@ -26,7 +26,7 @@ struct MainTabView: View {
                     }
                     .tag(1)
                 
-                AIAnalysisView()
+                AnalystView()
                     .tabItem {
                         Label("Análisis IA", systemImage: "camera.fill")
                     }

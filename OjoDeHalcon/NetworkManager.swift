@@ -5,6 +5,7 @@
 //  Created by Rafael Mejía López on 14/10/25.
 //
 import SwiftUI
+import FirebaseAuth
 
 class NetworkManager {
     static let shared = NetworkManager()

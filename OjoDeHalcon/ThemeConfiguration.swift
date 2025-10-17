@@ -5,6 +5,8 @@
 //  Created by Rafael Mejía López on 13/10/25.
 //
 
+import SwiftUI
+
 struct AppTheme {
     static let championBurgundy = Color(hex: "8D1B3D")
     static let tacticalBlack = Color(hex: "121212")
