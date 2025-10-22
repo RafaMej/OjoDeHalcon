@@ -7,7 +7,14 @@
 
 import AVFoundation
 import UserNotifications
+import FirebaseAnalytics
 
+
+enum PermissionStatus {
+    case notDetermined
+    case granted
+    case denied
+}
 class PermissionManager: ObservableObject {
     static let shared = PermissionManager()
     
@@ -50,7 +57,7 @@ class PermissionManager: ObservableObject {
                 self?.cameraStatus = granted ? .granted : .denied
                 completion(granted)
                 
-                FirebaseManager.shared.logEvent("permission_requested", parameters: [
+                Analytics.logEvent("permission_requested", parameters: [
                     "type": "camera",
                     "result": granted ? "granted" : "denied"
                 ])
@@ -87,7 +94,7 @@ class PermissionManager: ObservableObject {
                     UIApplication.shared.registerForRemoteNotifications()
                 }
                 
-                FirebaseManager.shared.logEvent("permission_requested", parameters: [
+                Analytics.logEvent("permission_requested", parameters: [
                     "type": "notification",
                     "result": granted ? "granted" : "denied"
                 ])

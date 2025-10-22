@@ -27,7 +27,9 @@ struct ProfileView: View {
         }
     }
 }
-
+#Preview {
+    ProfileView()
+}
 struct ProfileHeaderView: View {
     var body: some View {
         VStack(spacing: 16) {
