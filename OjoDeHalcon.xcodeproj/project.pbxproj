@@ -38,9 +38,9 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		06AA00302EB96079001EB7A6 /* VisionModel */ = {
+		06A2D6752EB9665400A5D977 /* New Folder */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = VisionModel;
+			path = "New Folder";
 			sourceTree = "<group>";
 		};
 		19B546A22EA1902E003E726B /* Analyst */ = {
@@ -111,7 +111,7 @@
 				78A73E832E9DE3C10023C058 /* Products */,
 				19B546A22EA1902E003E726B /* Analyst */,
 				19B546BC2EA193B7003E726B /* Frameworks */,
-				06AA00302EB96079001EB7A6 /* VisionModel */,
+				06A2D6752EB9665400A5D977 /* New Folder */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,7 +141,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				06AA00302EB96079001EB7A6 /* VisionModel */,
+				06A2D6752EB9665400A5D977 /* New Folder */,
 				19B546A22EA1902E003E726B /* Analyst */,
 				78A73E842E9DE3C10023C058 /* OjoDeHalcon */,
 			);
