@@ -10,34 +10,38 @@ struct AnalystView: View {
     @State private var isShowingStats = false
 
     var body: some View {
-        ZStack {
-            AuroraBackground()
-            VStack(spacing: 0) {
-                header
-                cardCarousel
-                pageControl
+        NavigationStack{
+            ZStack {
+                AuroraBackground()
+                VStack(spacing: 0) {
+                    header
+                    cardCarousel
+                    pageControl // The change is in this view
+                }
+                .safeAreaInset(edge: .bottom, content: floatingInputArea)
+                
+                if isShowingStats {
+                    StatsModalView(viewModel: viewModel, isPresented: $isShowingStats)
+                }
             }
-            .safeAreaInset(edge: .bottom, content: floatingInputArea)
-            
-            if isShowingStats {
-                StatsModalView(viewModel: viewModel, isPresented: $isShowingStats)
+            .task {
+                if viewModel.cards.isEmpty { await viewModel.startAnalysisSession() }
             }
-        }
-        .task {
-            if viewModel.cards.isEmpty { await viewModel.startAnalysisSession() }
-        }
-        .navigationBarHidden(true)
-        .onChange(of: viewModel.cards.count) {
-            withAnimation { selectedCardIndex = viewModel.cards.count - 1 }
+            .navigationBarHidden(true)
+            .onChange(of: viewModel.cards.count) {
+                withAnimation { selectedCardIndex = viewModel.cards.count - 1 }
+            }
         }
     }
     
     // --- SUBVISTAS ---
     private var header: some View {
         HStack(spacing: 16) {
-            Image(systemName: "sparkle.magnifyingglass")
-                .font(.title2.weight(.bold)).foregroundStyle(.white).padding(10)
-                .background(Color.white.opacity(0.1)).clipShape(Circle())
+            NavigationLink(destination: AIAnalysisView().navigationBarHidden(false)) {
+                            Image(systemName: "sparkle.magnifyingglass")
+                                .font(.title2.weight(.bold)).foregroundStyle(.white).padding(10)
+                                .background(Color.white.opacity(0.1)).clipShape(Circle())
+                        }
             VStack(alignment: .leading, spacing: 2) {
                 Text("Ojo de Halcón").font(.headline).bold().foregroundStyle(.white)
                 Text("Analista en Tiempo Real").font(.footnote).foregroundStyle(.white.opacity(0.7))
@@ -71,7 +75,11 @@ struct AnalystView: View {
                     .frame(width: 8, height: 8).scaleEffect(index == selectedCardIndex ? 1.2 : 1.0)
             }
         }
-        .padding(.bottom, 120)
+        // --- MODIFICATION HERE ---
+        // This adds space *above* the dots, pushing them down from the card.
+        .padding(.top, 15)
+        // --- END MODIFICATION ---
+        .padding(.bottom, 2) // This keeps it clear of the input area
         .animation(.spring(response: 0.3, dampingFraction: 0.7), value: selectedCardIndex)
     }
     
@@ -138,6 +146,7 @@ struct CardSideView: View {
             Text(text).font(.title2).fontWeight(.bold).foregroundStyle(.white).lineSpacing(6)
             Spacer()
         }
+       
         .padding(24).frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         .background(Color.black.opacity(0.2))
         .clipShape(RoundedRectangle(cornerRadius: 24, style: .continuous))
@@ -168,6 +177,7 @@ struct StatsModalView: View {
                     Task { await viewModel.explainStat(statName) }
                     close()
                 }
+               
                 Spacer(minLength: 0)
             }
             .frame(maxHeight: 450)
@@ -205,9 +215,9 @@ struct AnalyzerStatsView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(matchData.homeTeam.name).bold().foregroundStyle(matchData.homeTeam)//.logoColor)
+                Text(matchData.homeTeam.name).bold().foregroundStyle(.blue)//.logoColor)
                 Spacer(); Text("vs").foregroundStyle(.white.opacity(0.7)); Spacer()
-                Text(matchData.awayTeam.name).bold().foregroundStyle(matchData.awayTeam.logoColor)
+                Text(matchData.awayTeam.name).bold().foregroundStyle(.red)
             }.padding([.horizontal, .bottom], 4)
             Text("Minuto: \(matchData.matchTime)").font(.subheadline.weight(.semibold)).padding(.bottom, 8)
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {

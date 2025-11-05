@@ -10,7 +10,9 @@ struct RealPermissionsView: View {
     @EnvironmentObject var appState: AppState
     @StateObject private var permissionManager = PermissionManager.shared
     @State private var showingAlert = false
-    
+    private var allRequiredPermissionsGranted: Bool {
+            permissionManager.cameraStatus == .granted
+        }
     var body: some View {
         ZStack {
             AppTheme.championBurgundy.ignoresSafeArea()
