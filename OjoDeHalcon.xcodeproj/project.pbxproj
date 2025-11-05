@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		06A2D6B82EB967F900A5D977 /* best.mlpackage in Sources */ = {isa = PBXBuildFile; fileRef = 06A2D6B62EB967F900A5D977 /* best.mlpackage */; };
 		19B546BE2EA193B7003E726B /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = 19B546BD2EA193B7003E726B /* GoogleGenerativeAI */; };
 		78A73EEA2E9E9E080023C058 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 78A73EE92E9E9E080023C058 /* FirebaseAnalytics */; };
 		78A73EEC2E9E9E080023C058 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 78A73EEB2E9E9E080023C058 /* FirebaseAuth */; };
@@ -32,15 +33,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		06A2D6B62EB967F900A5D977 /* best.mlpackage */ = {isa = PBXFileReference; lastKnownFileType = folder.mlpackage; path = best.mlpackage; sourceTree = "<group>"; };
 		78A73E822E9DE3C10023C058 /* OjoDeHalcon.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OjoDeHalcon.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A73E902E9DE3C40023C058 /* OjoDeHalconTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OjoDeHalconTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		78A73E9A2E9DE3C40023C058 /* OjoDeHalconUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OjoDeHalconUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		06A2D6752EB9665400A5D977 /* New Folder */ = {
+		06E145B02EBC033400CA31D2 /* Camera */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
-			path = "New Folder";
+			path = Camera;
 			sourceTree = "<group>";
 		};
 		19B546A22EA1902E003E726B /* Analyst */ = {
@@ -95,6 +97,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		06A2D6B72EB967F900A5D977 /* VisionModel */ = {
+			isa = PBXGroup;
+			children = (
+				06A2D6B62EB967F900A5D977 /* best.mlpackage */,
+			);
+			path = VisionModel;
+			sourceTree = "<group>";
+		};
 		19B546BC2EA193B7003E726B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -105,13 +115,14 @@
 		78A73E792E9DE3C10023C058 = {
 			isa = PBXGroup;
 			children = (
+				06A2D6B72EB967F900A5D977 /* VisionModel */,
 				78A73E842E9DE3C10023C058 /* OjoDeHalcon */,
 				78A73E932E9DE3C40023C058 /* OjoDeHalconTests */,
 				78A73E9D2E9DE3C40023C058 /* OjoDeHalconUITests */,
 				78A73E832E9DE3C10023C058 /* Products */,
 				19B546A22EA1902E003E726B /* Analyst */,
 				19B546BC2EA193B7003E726B /* Frameworks */,
-				06A2D6752EB9665400A5D977 /* New Folder */,
+				06E145B02EBC033400CA31D2 /* Camera */,
 			);
 			sourceTree = "<group>";
 		};
@@ -141,7 +152,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				06A2D6752EB9665400A5D977 /* New Folder */,
+				06E145B02EBC033400CA31D2 /* Camera */,
 				19B546A22EA1902E003E726B /* Analyst */,
 				78A73E842E9DE3C10023C058 /* OjoDeHalcon */,
 			);
@@ -280,6 +291,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				06A2D6B82EB967F900A5D977 /* best.mlpackage in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -437,7 +449,7 @@
 				CODE_SIGN_ENTITLEMENTS = OjoDeHalcon/OjoDeHalcon.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZW9RJXFL72;
+				DEVELOPMENT_TEAM = UF2A7WAFT8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -455,7 +467,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.5;
@@ -482,7 +494,7 @@
 				CODE_SIGN_ENTITLEMENTS = OjoDeHalcon/OjoDeHalcon.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = ZW9RJXFL72;
+				DEVELOPMENT_TEAM = UF2A7WAFT8;
 				ENABLE_HARDENED_RUNTIME = YES;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -500,7 +512,7 @@
 				"INFOPLIST_KEY_UIStatusBarStyle[sdk=iphonesimulator*]" = UIStatusBarStyleDefault;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 18.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.6;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 15.5;
