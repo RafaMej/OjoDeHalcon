@@ -205,9 +205,17 @@ struct AnalyzerStatsView: View {
     var body: some View {
         VStack {
             HStack {
-                Text(matchData.homeTeam.name).bold().foregroundStyle(matchData.homeTeam)//.logoColor)
-                Spacer(); Text("vs").foregroundStyle(.white.opacity(0.7)); Spacer()
-                Text(matchData.awayTeam.name).bold().foregroundStyle(matchData.awayTeam.logoColor)
+                Text(matchData.homeTeam.name)
+                    .bold()
+                    .foregroundStyle(matchData.homeTeam.logoColor)   // antes pasabas Team completo
+
+                Spacer()
+                Text("vs").foregroundStyle(.white.opacity(0.7))
+                Spacer()
+
+                Text(matchData.awayTeam.name)
+                    .bold()
+                    .foregroundStyle(matchData.awayTeam.logoColor)   // ahora existe logoColor
             }.padding([.horizontal, .bottom], 4)
             Text("Minuto: \(matchData.matchTime)").font(.subheadline.weight(.semibold)).padding(.bottom, 8)
             LazyVGrid(columns: [GridItem(.flexible()), GridItem(.flexible())], spacing: 12) {

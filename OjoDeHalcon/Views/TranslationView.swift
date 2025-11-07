@@ -295,3 +295,7 @@ struct CommentCard: View {
         )
     }
 }
+
+#Preview{
+    TranslationView()
+}

@@ -154,3 +154,7 @@ struct TeamRow: View {
         .cornerRadius(8)
     }
 }
+
+#Preview {
+    StatsView()
+}

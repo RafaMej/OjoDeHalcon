@@ -95,3 +95,7 @@ struct AuthButton: View {
         }
     }
 }
+
+#Preview{
+    AuthenticationView()
+}

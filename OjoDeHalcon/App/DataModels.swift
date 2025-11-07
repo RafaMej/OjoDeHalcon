@@ -148,6 +148,25 @@ struct Team: Codable, Identifiable, Hashable {
     var confederation: Confederation
     var coach: String?
     
+    // NUEVO: color “de marca” persistible (hex)
+       var logoColorHex: String?
+
+       // NUEVO: color para la UI (no se serializa)
+       var logoColor: Color {
+           return Team.defaultLogoColor(for: self)
+       }
+
+       static func defaultLogoColor(for team: Team) -> Color {
+           switch team.id {
+           case "ARG": return Color(hex: "#75AADB") ?? .cyan          // Argentina sky blue
+           case "BRA": return Color(hex: "#FFDF00") ?? .yellow        // Brasil amarillo
+           case "FRA": return Color(hex: "#002654") ?? .blue          // Francia azul
+           case "ESP": return Color(hex: "#AA151B") ?? .red           // España rojo
+           case "MEX": return Color(hex: "#006847") ?? .green         // México verde
+           default:    return .white
+           }
+       }
+    
     init(id: String, name: String, shortName: String, code: String, flag: String) {
         self.id = id
         self.name = name
@@ -658,6 +677,33 @@ extension Match {
 extension Detection {
     var displayConfidence: String {
         return String(format: "%.0f%%", confidence * 100)
+    }
+}
+
+extension Color {
+    /// Convierte "#RRGGBB" o "RRGGBBAA" en Color. Si falla, devuelve .white
+    static func fromHex(_ hex: String) -> Color {
+        var s = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        if s.hasPrefix("#") { s.removeFirst() }
+
+        var value: UInt64 = 0
+        guard Scanner(string: s).scanHexInt64(&value) else { return .white }
+
+        switch s.count {
+        case 6:
+            let r = Double((value >> 16) & 0xFF) / 255
+            let g = Double((value >> 8) & 0xFF) / 255
+            let b = Double(value & 0xFF) / 255
+            return Color(red: r, green: g, blue: b)
+        case 8:
+            let a = Double((value >> 24) & 0xFF) / 255
+            let r = Double((value >> 16) & 0xFF) / 255
+            let g = Double((value >> 8) & 0xFF) / 255
+            let b = Double(value & 0xFF) / 255
+            return Color(red: r, green: g, blue: b, opacity: a)
+        default:
+            return .white
+        }
     }
 }
 

@@ -27,9 +27,7 @@ struct ProfileView: View {
         }
     }
 }
-#Preview {
-    ProfileView()
-}
+
 struct ProfileHeaderView: View {
     var body: some View {
         VStack(spacing: 16) {
@@ -187,4 +185,8 @@ struct SettingsRow: View {
                 .tint(AppTheme.championBurgundy)
         }
     }
+}
+
+#Preview {
+    ProfileView()
 }
