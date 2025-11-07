@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		19B546BE2EA193B7003E726B /* GoogleGenerativeAI in Frameworks */ = {isa = PBXBuildFile; productRef = 19B546BD2EA193B7003E726B /* GoogleGenerativeAI */; };
 		78A73EEA2E9E9E080023C058 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 78A73EE92E9E9E080023C058 /* FirebaseAnalytics */; };
 		78A73EEC2E9E9E080023C058 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 78A73EEB2E9E9E080023C058 /* FirebaseAuth */; };
 		78A73EEE2E9E9E080023C058 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 78A73EED2E9E9E080023C058 /* FirebaseCrashlytics */; };
@@ -37,6 +38,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		19B546A22EA1902E003E726B /* Analyst */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = Analyst;
+			sourceTree = "<group>";
+		};
 		78A73E842E9DE3C10023C058 /* OjoDeHalcon */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			path = OjoDeHalcon;
@@ -59,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				19B546BE2EA193B7003E726B /* GoogleGenerativeAI in Frameworks */,
 				78A73EEE2E9E9E080023C058 /* FirebaseCrashlytics in Frameworks */,
 				78A73EF02E9E9E080023C058 /* FirebaseFirestore in Frameworks */,
 				78A73EEA2E9E9E080023C058 /* FirebaseAnalytics in Frameworks */,
@@ -83,6 +90,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		19B546BC2EA193B7003E726B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		78A73E792E9DE3C10023C058 = {
 			isa = PBXGroup;
 			children = (
@@ -90,6 +104,8 @@
 				78A73E932E9DE3C40023C058 /* OjoDeHalconTests */,
 				78A73E9D2E9DE3C40023C058 /* OjoDeHalconUITests */,
 				78A73E832E9DE3C10023C058 /* Products */,
+				19B546A22EA1902E003E726B /* Analyst */,
+				19B546BC2EA193B7003E726B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +135,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				19B546A22EA1902E003E726B /* Analyst */,
 				78A73E842E9DE3C10023C058 /* OjoDeHalcon */,
 			);
 			name = OjoDeHalcon;
@@ -127,6 +144,7 @@
 				78A73EEB2E9E9E080023C058 /* FirebaseAuth */,
 				78A73EED2E9E9E080023C058 /* FirebaseCrashlytics */,
 				78A73EEF2E9E9E080023C058 /* FirebaseFirestore */,
+				19B546BD2EA193B7003E726B /* GoogleGenerativeAI */,
 			);
 			productName = OjoDeHalcon;
 			productReference = 78A73E822E9DE3C10023C058 /* OjoDeHalcon.app */;
@@ -212,6 +230,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				78A73EE82E9E9E080023C058 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				19B546BB2EA1912D003E726B /* XCRemoteSwiftPackageReference "generative-ai-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 78A73E832E9DE3C10023C058 /* Products */;
@@ -435,10 +454,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 2.5;
 			};
 			name = Debug;
@@ -475,10 +495,11 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				REGISTER_APP_GROUPS = YES;
 				SDKROOT = auto;
-				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx xros xrsimulator";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2,7";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				XROS_DEPLOYMENT_TARGET = 2.5;
 			};
 			name = Release;
@@ -615,6 +636,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		19B546BB2EA1912D003E726B /* XCRemoteSwiftPackageReference "generative-ai-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/generative-ai-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.6;
+			};
+		};
 		78A73EE82E9E9E080023C058 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
@@ -626,6 +655,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		19B546BD2EA193B7003E726B /* GoogleGenerativeAI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 19B546BB2EA1912D003E726B /* XCRemoteSwiftPackageReference "generative-ai-swift" */;
+			productName = GoogleGenerativeAI;
+		};
 		78A73EE92E9E9E080023C058 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 78A73EE82E9E9E080023C058 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

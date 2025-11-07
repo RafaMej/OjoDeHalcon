@@ -28,6 +28,7 @@ struct MainTabView: View {
                     }
                     .tag(1)
                 
+                // Vista del tab de Análisis IA con botón centrado
                 AnalystViewWithCameraButton(showAIAnalysis: $showAIAnalysis)
                     .tabItem {
                         Label("Análisis IA", systemImage: "camera.fill")

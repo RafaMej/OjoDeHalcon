@@ -137,7 +137,7 @@ enum MatchStatus: String, Codable {
     case cancelled = "cancelled"
 }
 
-struct Team: Codable, Identifiable {
+struct Team: Codable, Identifiable, Hashable {
     var id: String
     var name: String
     var shortName: String
@@ -259,7 +259,7 @@ struct MatchEvent: Codable, Identifiable {
     }
 }
 
-struct Player: Codable, Identifiable {
+struct Player: Codable, Identifiable, Hashable {
     var id: String
     var name: String
     var number: Int?
@@ -278,30 +278,22 @@ struct Player: Codable, Identifiable {
 
 // MARK: - Match Statistics
 
-struct MatchStatistics: Codable {
-    var possession: (home: Int, away: Int)
-    var shots: (home: Int, away: Int)
-    var shotsOnTarget: (home: Int, away: Int)
-    var corners: (home: Int, away: Int)
-    var fouls: (home: Int, away: Int)
-    var offsides: (home: Int, away: Int)
-    var yellowCards: (home: Int, away: Int)
-    var redCards: (home: Int, away: Int)
-    var passes: (home: Int, away: Int)
-    var passAccuracy: (home: Double, away: Double)
-    
-    init() {
-        self.possession = (0, 0)
-        self.shots = (0, 0)
-        self.shotsOnTarget = (0, 0)
-        self.corners = (0, 0)
-        self.fouls = (0, 0)
-        self.offsides = (0, 0)
-        self.yellowCards = (0, 0)
-        self.redCards = (0, 0)
-        self.passes = (0, 0)
-        self.passAccuracy = (0.0, 0.0)
-    }
+struct StatValue<T: Codable & Hashable>: Codable, Hashable {
+    var home: T
+    var away: T
+}
+
+struct MatchStatistics: Codable, Hashable { // FIX: Added Hashable
+    var possession: StatValue<Double> = .init(home: 0.5, away: 0.5) // FIX: Changed to Double for consistency
+    var shots: StatValue<Int> = .init(home: 0, away: 0)
+    var shotsOnTarget: StatValue<Int> = .init(home: 0, away: 0)
+    var corners: StatValue<Int> = .init(home: 0, away: 0)
+    var fouls: StatValue<Int> = .init(home: 0, away: 0)
+    var offsides: StatValue<Int> = .init(home: 0, away: 0)
+    var yellowCards: StatValue<Int> = .init(home: 0, away: 0)
+    var redCards: StatValue<Int> = .init(home: 0, away: 0)
+    var passes: StatValue<Int> = .init(home: 0, away: 0)
+    var passAccuracy: StatValue<Double> = .init(home: 0.0, away: 0.0)
 }
 
 // MARK: - Lineup Models
@@ -520,7 +512,7 @@ struct KnockoutMatch: Codable, Identifiable {
     var awayTeam: Team?
     var homeScore: Int?
     var awayScore: Int?
-    var penalties: (home: Int, away: Int)?
+    var penalties: StatValue<Int>?
     var winner: Team?
     var date: Date
 }
