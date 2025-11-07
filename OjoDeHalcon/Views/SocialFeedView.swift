@@ -92,3 +92,7 @@ struct EmptyStateView: View {
         .padding()
     }
 }
+
+#Preview {
+    SocialFeedView()
+}

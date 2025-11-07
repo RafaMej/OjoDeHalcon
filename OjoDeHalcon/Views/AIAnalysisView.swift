@@ -4,184 +4,136 @@
 //
 //  Created by Rafael Mejía López on 13/10/25.
 //
+
 import SwiftUI
 
 struct AIAnalysisView: View {
-    @State private var isAnalyzing = false
+    @State private var showCameraAnalysis = false
     
     var body: some View {
         ZStack {
             AppTheme.tacticalBlack.ignoresSafeArea()
             
-            VStack {
-                if !isAnalyzing {
-                    VStack(spacing: 32) {
-                        Spacer()
-                        
-                        ZStack {
-                            Circle()
-                                .fill(AppTheme.championBurgundy.opacity(0.3))
-                                .frame(width: 200, height: 200)
-                            
-                            Image(systemName: "camera.fill")
-                                .resizable()
-                                .scaledToFit()
-                                .frame(width: 80, height: 80)
-                                .foregroundColor(AppTheme.whiteSharp)
-                        }
-                        
-                        VStack(spacing: 16) {
-                            Text("Análisis IA en Vivo")
-                                .font(.title)
-                                .fontWeight(.bold)
-                                .foregroundColor(AppTheme.whiteSharp)
-                            
-                            Text("Apunta la cámara al partido para comenzar el análisis táctico en tiempo real")
-                                .font(.subheadline)
-                                .foregroundColor(AppTheme.whiteSharp.opacity(0.7))
-                                .multilineTextAlignment(.center)
-                                .padding(.horizontal, 32)
-                        }
-                        
-                        Spacer()
-                        
-                        Button(action: { isAnalyzing = true }) {
-                            HStack {
-                                Image(systemName: "play.fill")
-                                Text("Iniciar Análisis")
-                                    .fontWeight(.bold)
-                            }
-                            .foregroundColor(AppTheme.tacticalBlack)
-                            .frame(maxWidth: .infinity)
-                            .padding()
-                            .background(AppTheme.gloryGold)
-                            .cornerRadius(12)
-                        }
-                        .padding(.horizontal, 32)
-                        .padding(.bottom, 32)
-                    }
-                } else {
-                    LiveAnalysisView(isAnalyzing: $isAnalyzing)
+            VStack(spacing: 32) {
+                Spacer()
+                
+                // Hero Image/Icon
+                ZStack {
+                    Circle()
+                        .fill(AppTheme.championBurgundy.opacity(0.3))
+                        .frame(width: 200, height: 200)
+                    
+                    Image(systemName: "camera.fill")
+                        .resizable()
+                        .scaledToFit()
+                        .frame(width: 80, height: 80)
+                        .foregroundColor(AppTheme.whiteSharp)
                 }
+                
+                // Title and Description
+                VStack(spacing: 16) {
+                    Text("Análisis IA en Vivo")
+                        .font(.title)
+                        .fontWeight(.bold)
+                        .foregroundColor(AppTheme.whiteSharp)
+                    
+                    Text("Apunta la cámara al partido para comenzar el análisis táctico en tiempo real")
+                        .font(.subheadline)
+                        .foregroundColor(AppTheme.whiteSharp.opacity(0.7))
+                        .multilineTextAlignment(.center)
+                        .padding(.horizontal, 32)
+                }
+                
+                // Features List
+                VStack(alignment: .leading, spacing: 16) {
+                    FeatureRow(
+                        icon: "person.3.fill",
+                        title: "Detección de Jugadores",
+                        description: "Identifica jugadores en tiempo real"
+                    )
+                    
+                    FeatureRow(
+                        icon: "chart.line.uptrend.xyaxis",
+                        title: "Análisis Táctico",
+                        description: "Formaciones y movimientos"
+                    )
+                    
+                    FeatureRow(
+                        icon: "brain.head.profile",
+                        title: "Insights IA",
+                        description: "Recomendaciones inteligentes"
+                    )
+                }
+                .padding(.horizontal, 32)
+                
+                Spacer()
+                
+                // Main Action Button - Abre la cámara
+                Button(action: {
+                    print("🎥 Abriendo cámara...")
+                    showCameraAnalysis = true
+                }) {
+                    HStack(spacing: 12) {
+                        Image(systemName: "video.fill")
+                            .font(.title3)
+                        Text("Abrir Cámara")
+                            .fontWeight(.bold)
+                    }
+                    .foregroundColor(AppTheme.tacticalBlack)
+                    .frame(maxWidth: .infinity)
+                    .padding(.vertical, 16)
+                    .padding(.horizontal)
+                    .background(AppTheme.gloryGold)
+                    .cornerRadius(12)
+                }
+                .padding(.horizontal, 32)
+                .padding(.bottom, 32)
             }
+        }
+        .fullScreenCover(isPresented: $showCameraAnalysis) {
+            LiveCameraAnalysisView(isPresented: $showCameraAnalysis)
         }
     }
 }
 
-struct LiveAnalysisView: View {
-    @Binding var isAnalyzing: Bool
+// MARK: - Feature Row Component
+
+struct FeatureRow: View {
+    let icon: String
+    let title: String
+    let description: String
     
     var body: some View {
-        ZStack {
-            Color.black.ignoresSafeArea()
+        HStack(spacing: 16) {
+            Image(systemName: icon)
+                .font(.title2)
+                .foregroundColor(AppTheme.aiCyan)
+                .frame(width: 40)
             
-            VStack {
-                // Match Score Header
-                HStack {
-                    HStack {
-                        Circle()
-                            .fill(Color.red)
-                            .frame(width: 8, height: 8)
-                        Text("EN VIVO")
-                            .font(.caption)
-                            .fontWeight(.bold)
-                    }
-                    .padding(.horizontal, 12)
-                    .padding(.vertical, 6)
-                    .background(Color.red.opacity(0.2))
-                    .cornerRadius(16)
-                    
-                    Text("90+3'")
-                        .foregroundColor(AppTheme.whiteSharp)
-                    
-                    Spacer()
-                    
-                    Button(action: {}) {
-                        Image(systemName: "square.grid.2x2")
-                            .foregroundColor(AppTheme.whiteSharp)
-                    }
-                    
-                    Button(action: {}) {
-                        Image(systemName: "gearshape")
-                            .foregroundColor(AppTheme.whiteSharp)
-                    }
-                }
-                .padding()
-                
-                // Score Display
-                HStack {
-                    VStack {
-                        Text("Argentina")
-                            .foregroundColor(AppTheme.whiteSharp)
-                        Text("2")
-                            .font(.system(size: 48, weight: .bold))
-                            .foregroundColor(AppTheme.championBurgundy)
-                    }
-                    
-                    Text("VS")
-                        .foregroundColor(AppTheme.whiteSharp.opacity(0.5))
-                    
-                    VStack {
-                        Text("Francia")
-                            .foregroundColor(AppTheme.whiteSharp)
-                        Text("1")
-                            .font(.system(size: 48, weight: .bold))
-                            .foregroundColor(AppTheme.gloryGold)
-                    }
-                }
-                .padding()
-                .background(AppTheme.tacticalBlack.opacity(0.8))
-                .cornerRadius(16)
-                
-                Spacer()
-                
-                // AI Insight Card
-                HStack {
-                    Image(systemName: "bolt.fill")
-                        .foregroundColor(AppTheme.aiCyan)
-                    Text("Análisis IA")
-                        .foregroundColor(AppTheme.aiCyan)
-                        .fontWeight(.bold)
-                    Text("71:30")
-                        .foregroundColor(AppTheme.whiteSharp)
-                        .padding(.horizontal, 8)
-                        .padding(.vertical, 4)
-                        .background(AppTheme.tacticalBlack)
-                        .cornerRadius(8)
-                }
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(AppTheme.tacticalBlack.opacity(0.9))
-                .cornerRadius(12)
-                .padding(.horizontal)
-                
-                VStack(alignment: .leading, spacing: 8) {
-                    Text("Francia reorganizando la defensa tras pérdida de balón")
-                        .foregroundColor(AppTheme.whiteSharp)
-                        .font(.subheadline)
-                }
-                .padding()
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .background(AppTheme.tacticalBlack.opacity(0.9))
-                .cornerRadius(12)
-                .padding(.horizontal)
-                .padding(.bottom, 100)
-            }
-            
-            VStack {
-                Spacer()
-                Button(action: { isAnalyzing = false }) {
-                    HStack {
-                        Image(systemName: "stop.fill")
-                        Text("Detener Análisis")
-                    }
+            VStack(alignment: .leading, spacing: 4) {
+                Text(title)
+                    .font(.headline)
                     .foregroundColor(AppTheme.whiteSharp)
-                    .padding()
-                    .background(AppTheme.championBurgundy)
-                    .cornerRadius(12)
-                }
-                .padding(.bottom, 32)
+                
+                Text(description)
+                    .font(.caption)
+                    .foregroundColor(AppTheme.whiteSharp.opacity(0.6))
             }
+            
+            Spacer()
         }
+        .padding()
+        .background(
+            RoundedRectangle(cornerRadius: 12)
+                .fill(AppTheme.tacticalBlack.opacity(0.5))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 12)
+                        .stroke(AppTheme.aiCyan.opacity(0.2), lineWidth: 1)
+                )
+        )
     }
+}
+
+#Preview {
+    AIAnalysisView()
 }

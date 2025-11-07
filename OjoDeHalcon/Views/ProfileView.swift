@@ -186,3 +186,7 @@ struct SettingsRow: View {
         }
     }
 }
+
+#Preview {
+    ProfileView()
+}

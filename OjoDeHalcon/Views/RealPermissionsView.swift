@@ -177,3 +177,7 @@ struct RealPermissionRow: View {
         }
     }
 }
+
+#Preview {
+    RealPermissionsView()
+}
